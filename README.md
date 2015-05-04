@@ -9,3 +9,9 @@ The purpose of this tech test is to design a new website for the Comedy Store. T
 * Display dates of upcoming comedy store events
 
 I have decided to use Angular JS for this task, which will mean working with the MEAN stack (Mongo, Express, Angular and Node) for the first time.
+
+# Progress so far
+
+* Set up angular
+* Added Node
+* Added Express

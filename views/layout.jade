@@ -1,0 +1,10 @@
+doctype html
+html(ng-app='comedyApp')
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js')
+    script(src='/javascripts/app.js')
+  body(ng-controller='comedyController')
+    block content
+    
