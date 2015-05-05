@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+  block content
+  
+    form(method='post' action='/signin')
+      label(for='username') Username:
+      input(type='text', name='username', value=username)
+      input(type='submit', value='Sign In')

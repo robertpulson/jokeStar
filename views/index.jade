@@ -6,6 +6,11 @@ block content
     div(class='navbar-header')
       a(href='#' class='navbar-brand') Comedy App
 
+  form(method='post' action='/signin')
+    label(for='username') Username:
+    input(type='text', name='username', value=username)
+    input(type='submit', value='Sign In')
+
   div(class='alert alert-success' role='alert') {{randomJoke}}
 
   div(class='row')

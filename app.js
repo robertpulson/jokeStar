@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var signIn = require('./routes/signIn')
+
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -23,6 +26,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/form', signIn);
+app.use('/signin', signIn);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -37,6 +42,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
@@ -44,6 +50,7 @@ if (app.get('env') === 'development') {
       error: err
     });
   });
+
 }
 
 // production error handler
@@ -55,6 +62,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
