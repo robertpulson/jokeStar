@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var User = mongoose.model('User');
+var Joke = mongoose.model('Joke');
 var jwt = require('express-jwt');
 
 var auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
@@ -40,6 +41,22 @@ router.post('/login', function(req, res, next){
       return res.status(401).json(info);
     }
   })(req, res, next);
+});
+
+router.get('/jokes', function(req, res, next) {
+  Joke.find(function(err, jokes) {
+    if(err){ return(err); }
+    res.json(jokes);
+  });
+});
+
+router.post('/jokes', function(req, res, next) {
+  var joke = new Joke(req.body);
+
+  joke.save(function(err, post) {
+    if(err){ return next(err); }
+    res.json(joke);
+  })
 });
 
 module.exports = router;

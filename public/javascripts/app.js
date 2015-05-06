@@ -6,6 +6,11 @@ comedyApp.config(function($stateProvider, $urlRouterProvider) {
       url: '/home',
       templateUrl: '/home.html',
       controller: 'MainCtrl',
+      resolve: {
+        jokePromise: ['jokes', function(jokes) {
+          return jokes.getAll();
+        }]
+      },
       onEnter: function($state, auth) {
         if(auth.isLoggedIn() === false) {
           $state.go('login')
@@ -87,25 +92,35 @@ comedyApp.factory('auth', function($http, $window) {
 
 });
 
-comedyApp.factory('jokes', function() {
-  var object = { jokes: [  { text: 'Opera is when a guy gets stabbed in the back, and instead of bleeding, he sings.' },
-                           { text: 'Why do we drive on the parkways, and park on the driveways?'                      },
-                           { text: 'It takes balls to play water polo.'                                               },
-                           { text: 'Whats brown and sticky? A brown stick.'                                           },
-                           { text: 'Whats ET short for? Because hes got little legs'                                  },
-                           { text: 'The main problem with hedgehogs is they dont want to share the hedge'             } ] };
+comedyApp.factory('jokes', function($http, $resource) {
+
+  var object = { jokes: [] };
+
+  object.update = function() {
+    searchResource.get(function (data) {
+      console.log(data)
+      return $http.post('/jokes', data.value.joke)
+    });
+  };
+
+  object.getAll = function() {
+    return $http.get('/jokes').success(function(data) {
+      angular.copy(data, object.jokes);
+    });
+  };
+
   return object;
 });
 
 comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
 
-  // var searchResource = $resource('http://api.icndb.com/jokes/random')
+  // var searchResource = $resource('http://api.icndb.com/jokes/random');
 
   // searchResource.get(function (data) {
   //   $scope.randomJoke = data.value.joke;
-  // });
+  // })
 
-  $scope.jokes = jokes.jokes;
+  $scope.jokes = jokes.jokes
 
   $scope.randomJoke = $scope.jokes[Math.floor(Math.random() * $scope.jokes.length)];
 

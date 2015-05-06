@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var passport = require('passport');
 require('./models/User');
+require('./models/Joke')
 require('./config/passport');
 
 mongoose.connect('mongodb://localhost/comedy');
