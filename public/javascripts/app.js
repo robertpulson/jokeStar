@@ -7,12 +7,26 @@ comedyApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: '/home.html',
       controller: 'MainCtrl'
     })
-
-    .state('userHome', {
-      url: '/userHome',
-      templateUrl: '/userHome.html',
-      controller: 'MainCtrl'
-    });
+    .state('login', {
+      url: '/login',
+      templateUrl: '/login.html',
+      controller: 'AuthCtrl',
+      onEnter: ['$state', 'auth', function($state, auth) {
+        if(auth.isLoggedIn()) {
+          $state.go('home')
+        }
+      }]
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: '/register.html',
+      controller: 'AuthCtrl',
+      onEnter: ['$state', 'auth', function($state, auth) {
+        if(auth.isLoggedIn()) {
+          $state.go('home')
+        }
+      }]
+    })
 
   $urlRouterProvider.otherwise('home');  
 });
@@ -21,7 +35,7 @@ comedyApp.factory('auth', function($http, $window) {
   var auth = {};
 
   auth.saveToken = function(token) {
-    $window.localStorage['comedy-store-token'];
+    $window.localStorage['comedy-store-token'] = token;
   };
 
   auth.getToken = function() {
@@ -75,7 +89,13 @@ comedyApp.controller('MainCtrl', function($scope, $resource) {
   searchResource.get(function (data) {
     $scope.randomJoke = data.value.joke;
   });
+});
 
+comedyApp.controller('NavCtrl', function($scope, auth) {
+
+  $scope.isLoggedIn = auth.isLoggedIn;
+  $scope.currentUser = auth.currentUser;
+  $scope.logOut = auth.logOut;
 });
 
 comedyApp.controller('AuthCtrl', function($scope, $state, auth) {
