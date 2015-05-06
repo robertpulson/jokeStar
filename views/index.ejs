@@ -34,10 +34,6 @@
 
       <ui-view></ui-view>
 
-      <script type='text/ng-template' id='/home.html'>
-        <div class='alert alert-success' role='alert'>{{ randomJoke }}</div>
-      </script>
-
       <script type='text/ng-template' id='/login.html'>
 
         <form ng-submit='logIn()' style='margin-top:30px;'>
@@ -67,6 +63,10 @@
         </form>
 
       </script>
+
+      <script type='text/ng-template' id='/home.html'>
+
+        <div class='alert alert-success' role='alert'>{{ randomJoke }}</div>
 
         <div class='row'>
           <div class='col-sm-6 col-md-4'>
@@ -103,6 +103,8 @@
           </div>
 
         </div>
+
+      </script>
 
     </body>
 </html>

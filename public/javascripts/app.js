@@ -5,7 +5,12 @@ comedyApp.config(function($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/home',
       templateUrl: '/home.html',
-      controller: 'MainCtrl'
+      controller: 'MainCtrl',
+      onEnter: ['$state', 'auth', function($state, auth) {
+        if(auth.isLoggedIn() === false) {
+          $state.go('login')
+        }
+      }]
     })
     .state('login', {
       url: '/login',
@@ -28,7 +33,7 @@ comedyApp.config(function($stateProvider, $urlRouterProvider) {
       }]
     })
 
-  $urlRouterProvider.otherwise('home');  
+  $urlRouterProvider.otherwise('login');  
 });
 
 comedyApp.factory('auth', function($http, $window) {
@@ -91,11 +96,16 @@ comedyApp.controller('MainCtrl', function($scope, $resource) {
   });
 });
 
-comedyApp.controller('NavCtrl', function($scope, auth) {
+comedyApp.controller('NavCtrl', function($scope, auth, $state) {
 
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.currentUser = auth.currentUser;
-  $scope.logOut = auth.logOut;
+
+  $scope.logOut = function() {
+    auth.logOut();
+    $state.go('login');
+  };
+
 });
 
 comedyApp.controller('AuthCtrl', function($scope, $state, auth) {
