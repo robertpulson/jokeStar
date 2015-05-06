@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang='en' ng-app='comedyApp'>
+
+  <head>
+    <title>Comedy Store</title>
+
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+
+    <script src='/javascripts/angular.js'></script>
+    <script src='/javascripts/angular-resource.js'></script>
+    <script src='/javascripts/app.js'></script>
+  </head>
+
+    <body ng-controller='comedyController'>
+
+      <nav role='navigation' class='navbar navbar-default navbar-static-top'>
+
+        <div class='navbar-header'>
+          <a href='#' class='navbar-brand'>Comedy Store</a>
+        </div>
+
+      </nav>
+
+      <div class='alert alert-success' role='alert'>{{randomJoke}}</div>
+
+      <div class='row'>
+        <div class='col-sm-6 col-md-4'>
+          <div class='thumbnail'>
+            <div class='caption'>
+              <h3>The Cutting Edge</h3>
+              <h4>Tue - 8:00pm</h4>
+              <h5>£14/£9 Concession</h5>
+              <p>Ian Stone, Jarred Christmas, Scott Capurro, Ben Norris, Imran Yusuf, Rob Deering.  Doors open from 6.30pm - Happy Hour at the bar 6.30pm - 7.30pm.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-sm-6 col-md-4'>
+          <div class='thumbnail'>
+            <div class='caption'>
+              <h3>Comedy Store Players</h3>
+              <h4>Wed - 8:00pm</h4>
+              <h5>£17/£12 Concession</h5>
+              <p>Josie Lawrence, Neil Mullarkey, Richard Vranch, Phelim McDermott, Pippa Evans, Mike McShane. Doors open from 6.30pm - Happy Hour at the bar 6.30pm - 7.30pm.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-sm-6 col-md-4'>
+          <div class='thumbnail'>
+            <div class='caption'>
+              <h3>The Best In Stand Up</h3>
+              <h4>Thu - 8:00pm</h4>
+              <h5>£18/£13 Concession</h5>
+              <p>MC Ben Norris, Addy Van Der Borgh, Glenn Wool, Jeff Innocent, Ian Stone plus open spots. Doors open from 6.30pm - Happy Hour at the bar 6.30pm - 7.30pm.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </body>
+
+  </head>
+
+</html>

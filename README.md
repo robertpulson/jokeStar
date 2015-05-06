@@ -16,3 +16,4 @@ I have decided to use Angular JS for this task, which will mean working with the
 * Added Node
 * Added Express
 * Added Mongo and Mongoose - Realised that the MEAN stack is pretty mean and is going to take a lot of working out. However Im making progress and will complete this project by the end of the week.
+* Changed jade for ejs. In retrospect I now see the value of Jade, however at this point I'm finding the amount of new technology overwhelming and am using ejs to minify this.
