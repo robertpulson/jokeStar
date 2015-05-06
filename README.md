@@ -15,4 +15,4 @@ I have decided to use Angular JS for this task, which will mean working with the
 * Set up angular
 * Added Node
 * Added Express
-* Added Mongo/Mongoose - Realised that the MEAN stack is pretty mean and is going to take a lot of working out. However Im making progress and will complete this project by the end of the week.
+* Added Mongo and Mongoose - Realised that the MEAN stack is pretty mean and is going to take a lot of working out. However Im making progress and will complete this project by the end of the week.
