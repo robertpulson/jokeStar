@@ -22,7 +22,7 @@ router.post('/register', function(req, res, next) {
 
   user.save(function (err) {
     if(err) { return next(err); }
-    return res.json({ token: user.generateJWT })
+    return res.json({ token: user.generateJWT() })
   });
 });
 
@@ -35,7 +35,7 @@ router.post('/login', function(req, res, next){
     if(err){ return next(err); }
 
     if(user){
-      return res.json({token: user.generateJWT()});
+      return res.json({ token: user.generateJWT() });
     } else {
       return res.status(401).json(info);
     }

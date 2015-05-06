@@ -20,21 +20,21 @@
         <div class='navbar-header'>
           <a href='#' class='navbar-brand'>Comedy Store</a>
           <ul class='nav navbar-nav'>
-            <li ng-show='isLoggedIn()'> <a> {{ currentUser() }} </a> </li>
-            <li ng-show="isLoggedIn()"> <a href="" ng-click="logOut()">Log Out</a> </li>
-            <li ng-hide="isLoggedIn()"> <a href="/#/login">Log In</a> </li>
-            <li ng-hide="isLoggedIn()"> <a href="/#/register">Register</a> </li>
+            <li ng-show='isLoggedIn()'><a>{{ currentUser() }}</a></li>
+            <li ng-show="isLoggedIn()"><a ng-click="logOut()">Log Out</a></li>
+            <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+            <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
           </ul>
         </div>
       </nav>
 
-      <div ng-show="error" class="alert alert-danger row">
-        <span>{{ error.message }}</span>
-      </div>
-
       <ui-view></ui-view>
 
       <script type='text/ng-template' id='/login.html'>
+
+        <div ng-show="error" class="alert alert-danger row">
+          <span>{{ error.message }}</span>
+        </div>
 
         <form ng-submit='logIn()' style='margin-top:30px;'>
           <h3>Log In</h3>
@@ -51,6 +51,10 @@
 
       <script type='text/ng-template' id='/register.html'>
 
+        <div ng-show="error" class="alert alert-danger row">
+          <span>{{ error.message }}</span>
+        </div>
+
         <form ng-submit='register()' style='margin-top:30px;'>
           <h3>Register</h3>
           <div class='form-group'>
@@ -66,7 +70,7 @@
 
       <script type='text/ng-template' id='/home.html'>
 
-        <div class='alert alert-success' role='alert'>{{ randomJoke }}</div>
+        <div class='alert alert-success' role='alert'>{{ randomJoke.text }}</div>
 
         <div class='row'>
           <div class='col-sm-6 col-md-4'>
