@@ -64,7 +64,6 @@ comedyApp.factory('auth', function($http, $window) {
   };
 
   auth.currentUser = function() {
-
     if(auth.isLoggedIn()) {
       var token = auth.getToken();
       var payload = JSON.parse($window.atob(token.split('.')[1]));
@@ -92,16 +91,9 @@ comedyApp.factory('auth', function($http, $window) {
 
 });
 
-comedyApp.factory('jokes', function($http, $resource) {
+comedyApp.factory('jokes', function($http) {
 
   var object = { jokes: [] };
-
-  object.update = function() {
-    searchResource.get(function (data) {
-      console.log(data)
-      return $http.post('/jokes', data.value.joke)
-    });
-  };
 
   object.getAll = function() {
     return $http.get('/jokes').success(function(data) {
@@ -115,13 +107,11 @@ comedyApp.factory('jokes', function($http, $resource) {
 comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
 
   // var searchResource = $resource('http://api.icndb.com/jokes/random');
-
   // searchResource.get(function (data) {
   //   $scope.randomJoke = data.value.joke;
   // })
 
   $scope.jokes = jokes.jokes
-
   $scope.randomJoke = $scope.jokes[Math.floor(Math.random() * $scope.jokes.length)];
 
 });
@@ -154,7 +144,6 @@ comedyApp.controller('AuthCtrl', function($scope, $state, auth) {
     auth.logIn($scope.user).error(function(error){
       $scope.error = error;
     }).then(function() {
-
       $state.go('home');
     });
   };

@@ -53,10 +53,10 @@ router.get('/jokes', function(req, res, next) {
 router.post('/jokes', function(req, res, next) {
   var joke = new Joke(req.body);
 
-  joke.save(function(err, post) {
+  joke.save(function(err, joke) {
     if(err){ return next(err); }
     res.json(joke);
-  })
+  });
 });
 
 module.exports = router;
