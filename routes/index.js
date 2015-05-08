@@ -43,6 +43,13 @@ router.post('/login', function (req, res, next){
   })(req, res, next);
 });
 
+router.get('/users', function (req, res, next) {
+  User.find(function (err, users) {
+    if(err){ return(err); }
+    res.json(users);
+  });
+});
+
 router.param('joke', function (req, res, next, id) {
   var query = Joke.findById(id);
 
@@ -56,21 +63,21 @@ router.param('joke', function (req, res, next, id) {
 });
 
 router.get('/jokes', function (req, res, next) {
-  Joke.find(function(err, jokes) {
+  // Joke.find(function(err, jokes) {
+  //   if(err){ return(err); }
+  //   res.json(jokes);
+  // });
+  Joke.find()
+  .populate('User')
+  .exec(function (err, jokes) {
     if(err){ return(err); }
     res.json(jokes);
   });
 });
 
-router.get('/users', function (req, res, next) {
-  User.find(function (err, users) {
-    if(err){ return(err); }
-    res.json(users);
-  });
-});
-
-router.post('/jokes', function (req, res, next) {
+router.post('/jokes', auth, function (req, res, next) {
   var joke = new Joke(req.body);
+  joke.user = req.payload._id;
 
   joke.save(function (err, joke) {
     if(err){ return next(err); }
@@ -78,7 +85,7 @@ router.post('/jokes', function (req, res, next) {
   });
 });
 
-router.put('/jokes/:joke/addstar', function (req, res, next) {
+router.put('/jokes/:joke/addstar', auth, function (req, res, next) {
   req.joke.addstar(function (err, joke) {
     if (err) { return next(err); }
     res.json(joke);

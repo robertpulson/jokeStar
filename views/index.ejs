@@ -79,7 +79,7 @@
 
         <div ng-repeat='joke in jokes' class='panel panel-info'>
 
-          <div class='panel-heading'>Username</div>
+          <div class='panel-heading'>{{ joke.user.username }}</div>
           <div class='panel-body'>{{ joke.text }} - {{ joke.stars }}</div>
           <div class='panel-footer'>
 

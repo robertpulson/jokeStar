@@ -90,12 +90,14 @@ comedyApp.factory('auth', function($http, $window) {
   return auth;
 });
 
-comedyApp.factory('jokes', function($http) {
+comedyApp.factory('jokes', function($http, auth) {
 
   var object = { jokes: [] };
 
   object.create = function(joke) {
-    return $http.post('/jokes', joke).success(function(data) {
+    return $http.post('/jokes', joke, {
+      headers: { Authorization: 'Bearer ' + auth.getToken() }
+    }).success(function(data) {
       object.jokes.unshift(data);
     });
   };
@@ -124,7 +126,7 @@ comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
     $scope.text = '';
   };
 
-  $scope.addstar =  function(joke) {
+  $scope.addstar = function(joke) {
     jokes.addstar(joke);
   };
 
