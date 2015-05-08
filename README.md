@@ -1,5 +1,7 @@
 # jokeStar
 
+A social media website using the MEAN stack.
+
 # Progress so far
 
 * Set up angular
