@@ -98,15 +98,17 @@ comedyApp.factory('jokes', function($http, auth) {
     return $http.post('/jokes', joke, {
       headers: { Authorization: 'Bearer ' + auth.getToken() }
     }).success(function(data) {
+      data.username = auth.currentUser();
       object.jokes.unshift(data);
     });
   };
 
   object.addstar = function(joke) {
-    return $http.put('/jokes/' + joke._id + '/addstar')
-      .success(function(data) {
+    return $http.put('/jokes/' + joke._id + '/addstar', joke, {
+      headers: { Authorization: 'Bearer ' + auth.getToken() }
+    }).success(function(data) {
         joke.stars += 1;
-      });
+    });
   };
 
   object.getAll = function() {

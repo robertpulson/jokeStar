@@ -63,12 +63,8 @@ router.param('joke', function (req, res, next, id) {
 });
 
 router.get('/jokes', function (req, res, next) {
-  // Joke.find(function(err, jokes) {
-  //   if(err){ return(err); }
-  //   res.json(jokes);
-  // });
-  Joke.find()
-  .populate('User')
+  Joke.find({})
+  .populate('user')
   .exec(function (err, jokes) {
     if(err){ return(err); }
     res.json(jokes);
