@@ -88,12 +88,17 @@ comedyApp.factory('auth', function($http, $window) {
   };
   
   return auth;
-
 });
 
 comedyApp.factory('jokes', function($http) {
 
   var object = { jokes: [] };
+
+  object.create = function(joke) {
+    return $http.post('/jokes', joke).success(function(data) {
+      object.jokes.push(data);
+    });
+  };
 
   object.getAll = function() {
     return $http.get('/jokes').success(function(data) {
@@ -106,10 +111,11 @@ comedyApp.factory('jokes', function($http) {
 
 comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
 
-  // var searchResource = $resource('http://api.icndb.com/jokes/random');
-  // searchResource.get(function (data) {
-  //   $scope.randomJoke = data.value.joke;
-  // })
+  $scope.addJoke = function() {
+    if(!$scope.text || $scope.text === '') { return; }
+    jokes.create({ text: $scope.text });
+    $scope.text = '';
+  };
 
   $scope.jokes = jokes.jokes
   $scope.randomJoke = $scope.jokes[Math.floor(Math.random() * $scope.jokes.length)];
@@ -125,7 +131,6 @@ comedyApp.controller('NavCtrl', function($scope, auth, $state) {
     auth.logOut();
     $state.go('login');
   };
-
 });
 
 comedyApp.controller('AuthCtrl', function($scope, $state, auth) {

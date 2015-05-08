@@ -50,6 +50,13 @@ router.get('/jokes', function(req, res, next) {
   });
 });
 
+router.get('/users', function(req, res, next) {
+  User.find(function(err, users) {
+    if(err){ return(err); }
+    res.json(users);
+  });
+});
+
 router.post('/jokes', function(req, res, next) {
   var joke = new Joke(req.body);
 

@@ -3,7 +3,7 @@
 <html lang='en' ng-app='comedyApp'>
 
   <head>
-    <title>Comedy Store</title>
+    <title>JokeStar</title>
 
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'>
     <link rel='stylesheet' href='/stylesheets/style.css'>
@@ -18,7 +18,7 @@
 
       <nav role='navigation' class='navbar navbar-default pull-right' ng-controller='NavCtrl'>  
         <div class='navbar-header'>
-          <a href='#' class='navbar-brand'>Comedy Store</a>
+          <a href='#' class='navbar-brand'>JokeStar</a>
           <ul class='nav navbar-nav'>
             <li ng-show='isLoggedIn()'><a>{{ currentUser() }}</a></li>
             <li ng-show="isLoggedIn()"><a ng-click="logOut()">Log Out</a></li>
@@ -72,41 +72,10 @@
 
         <div class='alert alert-success' role='alert'>{{ randomJoke.text }}</div>
 
-        <div class='row'>
-          <div class='col-sm-6 col-md-4'>
-            <div class='thumbnail'>
-              <div class='caption'>
-                <h3>The Cutting Edge</h3>
-                <h4>Tue - 8:00pm</h4>
-                <h5>£14/£9 Concession</h5>
-                <p>Ian Stone, Jarred Christmas, Scott Capurro, Ben Norris, Imran Yusuf, Rob Deering.  Doors open from 6.30pm - Happy Hour at the bar 6.30pm - 7.30pm.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class='col-sm-6 col-md-4'>
-            <div class='thumbnail'>
-              <div class='caption'>
-                <h3>Comedy Store Players</h3>
-                <h4>Wed - 8:00pm</h4>
-                <h5>£17/£12 Concession</h5>
-                <p>Josie Lawrence, Neil Mullarkey, Richard Vranch, Phelim McDermott, Pippa Evans, Mike McShane. Doors open from 6.30pm - Happy Hour at the bar 6.30pm - 7.30pm.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class='col-sm-6 col-md-4'>
-            <div class='thumbnail'>
-              <div class='caption'>
-                <h3>The Best In Stand Up</h3>
-                <h4>Thu - 8:00pm</h4>
-                <h5>£18/£13 Concession</h5>
-                <p>MC Ben Norris, Addy Van Der Borgh, Glenn Wool, Jeff Innocent, Ian Stone plus open spots. Doors open from 6.30pm - Happy Hour at the bar 6.30pm - 7.30pm.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <form ng-submit='addJoke()'>
+          <input type='text' class='form-control' placeholder='Post a new Joke' ng-model='text'>
+          <button type='submit' class='btn btn-primary'>Post</button>
+        </form>
 
       </script>
 
