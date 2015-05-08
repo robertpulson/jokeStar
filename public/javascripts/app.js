@@ -133,6 +133,10 @@ comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
     jokes.addStarsTo(joke, stars);
   };
 
+  $scope.averageStars = function(joke) {
+    if (joke.stars == 0) return 0;
+    return (joke.score / joke.stars).toFixed(1);
+  };
   $scope.jokes = jokes.jokes.reverse();
   $scope.randomJoke = $scope.jokes[Math.floor(Math.random() * $scope.jokes.length)];
 
