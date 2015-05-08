@@ -100,6 +100,13 @@ comedyApp.factory('jokes', function($http) {
     });
   };
 
+  object.addstar = function(joke) {
+    return $http.put('/jokes/' + joke._id + '/addstar')
+      .success(function(data) {
+        joke.stars += 1;
+      });
+  };
+
   object.getAll = function() {
     return $http.get('/jokes').success(function(data) {
       angular.copy(data, object.jokes);
@@ -115,6 +122,10 @@ comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
     if(!$scope.text || $scope.text === '') { return; }
     jokes.create({ text: $scope.text });
     $scope.text = '';
+  };
+
+  $scope.addstar =  function(joke) {
+    jokes.addstar(joke);
   };
 
   $scope.jokes = jokes.jokes.reverse();
