@@ -103,11 +103,12 @@ comedyApp.factory('jokes', function($http, auth) {
     });
   };
 
-  object.addstar = function(joke) {
-    return $http.put('/jokes/' + joke._id + '/addstar', joke, {
+  object.addStarsTo = function(joke, stars) {
+    return $http.put('/jokes/' + joke._id + '/addstarsto/' + stars, joke, {
       headers: { Authorization: 'Bearer ' + auth.getToken() }
     }).success(function(data) {
         joke.stars += 1;
+        joke.score += stars;
     });
   };
 
@@ -128,8 +129,8 @@ comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
     $scope.text = '';
   };
 
-  $scope.addstar = function(joke) {
-    jokes.addstar(joke);
+  $scope.addStarsTo = function(joke, stars) {
+    jokes.addStarsTo(joke, stars);
   };
 
   $scope.jokes = jokes.jokes.reverse();

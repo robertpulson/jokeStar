@@ -81,11 +81,12 @@ router.post('/jokes', auth, function (req, res, next) {
   });
 });
 
-router.put('/jokes/:joke/addstar', auth, function (req, res, next) {
+router.put('/jokes/:joke/addstarsto/:stars', auth, function (req, res, next) {
+  var stars = req.params.stars;
   req.joke.addstar(function (err, joke) {
     if (err) { return next(err); }
     res.json(joke);
-  });
+  }, stars);
 });
 
 module.exports = router;

@@ -8,8 +8,9 @@ var JokeSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
-JokeSchema.methods.addstar = function(cb) {
+JokeSchema.methods.addstar = function(cb, stars) {
   this.stars += 1;
+  this.score += stars;
   this.save(cb);
 };
 

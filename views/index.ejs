@@ -80,15 +80,15 @@
         <div ng-repeat='joke in jokes' class='panel panel-info'>
 
           <div class='panel-heading'>{{ joke.user.username || joke.username }}</div>
-          <div class='panel-body'>{{ joke.text }} - {{ joke.stars }}</div>
+          <div class='panel-body'>{{ joke.text }} - {{ joke.stars }} - {{ joke.score }}</div>
           <div class='panel-footer'>
 
             <div class="btn-group">
-              <button ng-click='addstar(joke)' type="button" class="btn btn-primary">1</button>
-              <button ng-click='addstar(joke)' type="button" class="btn btn-primary">2</button>
-              <button ng-click='addstar(joke)' type="button" class="btn btn-primary">3</button>
-              <button ng-click='addstar(joke)' type='button' class='btn btn-primary'>4</button>
-              <button ng-click='addstar(joke)' type='button' class='btn btn-primary'>5</button>
+              <button ng-click='addStarsTo(joke, 1)' type="button" class="btn btn-primary">1</button>
+              <button ng-click='addStarsTo(joke, 2)' type="button" class="btn btn-primary">2</button>
+              <button ng-click='addStarsTo(joke, 3)' type="button" class="btn btn-primary">3</button>
+              <button ng-click='addStarsTo(joke, 4)' type='button' class='btn btn-primary'>4</button>
+              <button ng-click='addStarsTo(joke, 5)' type='button' class='btn btn-primary'>5</button>
             </div>
 
           </div>
