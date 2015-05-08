@@ -1,4 +1,12 @@
-body 
+body
 {
+  padding-top: 80px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
 
+img
+{
+  height: 50px;
+  width:50px;
 }
