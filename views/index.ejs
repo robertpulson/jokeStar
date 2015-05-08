@@ -77,6 +77,16 @@
           <button type='submit' class='btn btn-primary'>Post</button>
         </form>
 
+        <div ng-repeat='joke in jokes' class='panel panel-info'>
+
+          <div class='panel-heading'>Username</div>
+          <div class='panel-body'>{{ joke.text }}</div>
+          <div class='panel-footer'>
+            <button>Star</button>
+          </div>
+
+        </div>
+
       </script>
 
     </body>

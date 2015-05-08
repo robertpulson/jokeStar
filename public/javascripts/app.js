@@ -96,7 +96,7 @@ comedyApp.factory('jokes', function($http) {
 
   object.create = function(joke) {
     return $http.post('/jokes', joke).success(function(data) {
-      object.jokes.push(data);
+      object.jokes.unshift(data);
     });
   };
 
@@ -117,7 +117,7 @@ comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
     $scope.text = '';
   };
 
-  $scope.jokes = jokes.jokes
+  $scope.jokes = jokes.jokes.reverse();
   $scope.randomJoke = $scope.jokes[Math.floor(Math.random() * $scope.jokes.length)];
 
 });
