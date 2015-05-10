@@ -7,9 +7,12 @@ comedyApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: '/home.html',
       controller: 'MainCtrl',
       resolve: {
-        jokePromise: ['jokes', function(jokes) {
+        jokePromise: function(jokes) {
           return jokes.getAll();
-        }]
+        },
+        userPromise: function(users) {
+          return users.getAll();
+        }
       },
       onEnter: function($state, auth) {
         if(auth.isLoggedIn() === false) {
@@ -121,7 +124,20 @@ comedyApp.factory('jokes', function($http, auth) {
   return object;
 });
 
-comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
+comedyApp.factory('users', function($http) {
+
+  var object = { users: [] };
+
+  object.getAll = function() {
+    return $http.get('/users').success(function(data) {
+      angular.copy(data, object.users);
+    });
+  };
+
+  return object;
+});
+
+comedyApp.controller('MainCtrl', function($scope, $resource, jokes, users) {
 
   $scope.addJoke = function() {
     if(!$scope.text || $scope.text === '') return;
@@ -138,6 +154,7 @@ comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
     return (joke.score / joke.stars).toFixed(1);
   };
 
+  $scope.users = users.users
   $scope.jokes = jokes.jokes.reverse();
   $scope.randomJoke = $scope.jokes[Math.floor(Math.random() * $scope.jokes.length)];
 
