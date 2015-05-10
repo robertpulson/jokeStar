@@ -14,5 +14,7 @@ A social media website using the MEAN stack.
 
 # ToDo
 
-* Create a star model so a user can only star each joke once.
-* Implement user rating system.
+* Create a star model so a user can only star each joke once
+* Implement user rating system
+* Extract controllers, and factories from angular app.js
+* Extract some routes from index.js

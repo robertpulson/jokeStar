@@ -124,7 +124,7 @@ comedyApp.factory('jokes', function($http, auth) {
 comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
 
   $scope.addJoke = function() {
-    if(!$scope.text || $scope.text === '') { return; }
+    if(!$scope.text || $scope.text === '') return;
     jokes.create({ text: $scope.text });
     $scope.text = '';
   };
@@ -137,6 +137,7 @@ comedyApp.controller('MainCtrl', function($scope, $resource, jokes) {
     if (joke.stars == 0) return 0;
     return (joke.score / joke.stars).toFixed(1);
   };
+
   $scope.jokes = jokes.jokes.reverse();
   $scope.randomJoke = $scope.jokes[Math.floor(Math.random() * $scope.jokes.length)];
 
