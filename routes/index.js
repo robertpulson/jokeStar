@@ -47,6 +47,10 @@ router.get('/users', function (req, res, next) {
   });
 });
 
+router.get('/users/:user', function (req, res) {
+  res.json(req.user);
+});
+
 router.param('joke', function (req, res, next, id) {
   var query = Joke.findById(id);
 
@@ -55,6 +59,18 @@ router.param('joke', function (req, res, next, id) {
     if (!joke) return next(new Error("Can't find joke"));
 
     req.joke = joke;
+    return next();
+  });
+});
+
+router.param('user', function (req, res, next, id) {
+  var query = User.findById(id);
+
+  query.exec(function (err, user) {
+    if (err) return next(err);
+    if (!user) return next(new Error("Can't find user"));
+
+    req.user = user;
     return next();
   });
 });

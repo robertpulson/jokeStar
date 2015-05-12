@@ -126,7 +126,7 @@
             </tr>
             <tr ng-repeat='user in users'>
               <td>{{ $index + 1 }}</td>
-              <td>{{ user.username }}</td>
+              <td><a href='#/users/{{ user._id }}'>{{ user.username }}</a></td>
               <td>{{ user.score }}</td>
             </tr>
           </table>
@@ -142,7 +142,7 @@
             </tr>
             <tr ng-repeat='user in users'>
               <td>{{ $index + 1 }}</td>
-              <td>{{ user.username }}</td>
+              <td><a href='#/users/{{ user._id }}'>{{ user.username }}</a></td>
               <td>{{ user.score }}</td>
             </tr>
           </table>
@@ -158,7 +158,7 @@
             </tr>
             <tr ng-repeat='user in users'>
               <td>{{ $index + 1 }}</td>
-              <td>{{ user.username }}</td>
+              <td><a href='#/users/{{ user._id }}'>{{ user.username }}</a></td>
               <td>{{ user.score }}</td>
             </tr>
           </table>
