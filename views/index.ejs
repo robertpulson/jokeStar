@@ -116,6 +116,7 @@
 
         </div>
 
+        <h4>Global Leaderboard</h4>
         <div class='col-xs-3'>
           <table class="table table-hover">
             <tr>
@@ -131,6 +132,37 @@
           </table>
         </div>
 
+        <h4>Monthly Leaderboard</h4>
+        <div class='col-xs-3'>
+          <table class="table table-hover">
+            <tr>
+              <th>Ranking</th>
+              <th>Username</th>
+              <th>Points</th>
+            </tr>
+            <tr ng-repeat='user in users'>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.score }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <h4>Your Leaderboard</h4>
+        <div class='col-xs-3'>
+          <table class="table table-hover">
+            <tr>
+              <th>Ranking</th>
+              <th>Username</th>
+              <th>Points</th>
+            </tr>
+            <tr ng-repeat='user in users'>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.score }}</td>
+            </tr>
+          </table>
+        </div>
 
         </div>
         </div>
