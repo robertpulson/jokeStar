@@ -15,7 +15,7 @@ comedyApp.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       onEnter: function($state, auth) {
-        if(auth.isLoggedIn() === false) {
+        if(!auth.isLoggedIn()) {
           $state.go('login')
         }
       }
